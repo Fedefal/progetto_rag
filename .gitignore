@@ -1,0 +1,9 @@
+venv_rag/
+__pycache__/
+*.pyc
+.env
+chroma_db_*/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

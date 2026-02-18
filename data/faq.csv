@@ -1,0 +1,16 @@
+domanda,risposta,categoria
+Come posso resettare la mia password aziendale?,"Per resettare la password, visita il portale https://id.techcorp.com e clicca su 'Password Dimenticata'. Riceverai un codice via SMS.",IT
+Qual è la politica per il lavoro da remoto (smart working)?,"I dipendenti possono lavorare da remoto fino a 2 giorni a settimana, previa approvazione del manager diretto. I giorni devono essere segnati su WorkDay.",HR
+Come richiedo un giorno di ferie?,Le ferie vanno richieste tramite il portale HR almeno 3 giorni prima. Il manager ha 24 ore per approvare.,HR
+Quali sono gli orari della mensa aziendale?,La mensa è aperta dalle 12:00 alle 14:30 dal lunedì al venerdì. Il bar è aperto dalle 08:30 alle 18:00.,Servizi
+Posso usare il mio laptop personale per lavoro?,"No, per motivi di sicurezza è vietato connettere dispositivi personali alla rete interna o usarli per trattare dati aziendali. Usa solo il laptop fornito.",IT
+Chi devo contattare per problemi con la VPN?,"Per problemi VPN, apri un ticket su Jira Service Desk selezionando la categoria 'Network'. In caso di urgenza, chiama l'interno 5555.",IT
+Come funziona il rimborso spese trasferta?,Le note spese devono essere caricate su Concur entro il 5 del mese successivo. Allegare sempre le foto degli scontrini.,Amministrazione
+Qual è il massimale per le spese del pranzo durante le trasferte?,Il massimale per il pranzo in trasferta è di 25 euro a persona. Cene di rappresentanza richiedono pre-approvazione.,Amministrazione
+Dove trovo i cedolini dello stipendio?,I cedolini sono disponibili nell'area riservata del portale ADP. Vengono caricati il 27 di ogni mese.,HR
+L'azienda offre corsi di formazione?,"Sì, ogni dipendente ha un budget di 500 euro annui per corsi su Udemy o Coursera. Contatta HR per l'attivazione.",HR
+Qual è la procedura in caso di malattia?,"In caso di malattia, avvisa il manager entro le 09:00 e invia il numero di protocollo del certificato medico a hr@techcorp.com entro 24 ore.",HR
+Posso portare ospiti esterni in ufficio?,Gli ospiti devono essere registrati alla reception. Riceveranno un badge temporaneo e devono essere sempre accompagnati da un dipendente.,Sicurezza
+Come configuro la stampante del secondo piano?,"Per la stampante 2P, cerca l'IP 192.168.1.50 nelle impostazioni stampanti. I driver si installano automaticamente.",IT
+Qual è la password del Wi-Fi ospiti?,La rete Wi-Fi è 'TechCorp_Guest'. La password cambia ogni lunedì ed è visibile sui monitor alla reception.,IT
+Cosa faccio se perdo il badge aziendale?,Denuncia immediatamente lo smarrimento alla sicurezza (sicurezza@techcorp.com) per disattivare il badge. Il costo per il duplicato è di 10 euro.,Sicurezza

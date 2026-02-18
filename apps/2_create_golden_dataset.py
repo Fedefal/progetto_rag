@@ -1,0 +1,121 @@
+import json
+import os
+
+# Definiamo manualmente le 20 domande e risposte (Golden Dataset)
+# In un progetto reale, questo lo farebbe un umano esperto o un LLM potente.
+
+golden_data = [
+    # --- DOMANDE SUL MANUAL LAVATRICE (PDF) ---
+    {
+        "question": "Quale frequenza del router Wi-Fi è supportata dalla lavatrice?",
+        "ground_truth": "La lavatrice supporta solo la frequenza del router a 2,4 GHz.",
+        "source": "manuale.pdf"
+    },
+    {
+        "question": "Cosa devo fare se la distanza tra lavatrice e router è eccessiva?",
+        "ground_truth": "Se la distanza è eccessiva il segnale si indebolisce. Bisogna spostare il router più vicino al dispositivo.",
+        "source": "manuale.pdf"
+    },
+    {
+        "question": "Dove posso trovare il personale di assistenza autorizzato?",
+        "ground_truth": "Visitare il sito web www.lg.com e seguire le istruzioni per trovare centri assistenza autorizzati.",
+        "source": "manuale.pdf"
+    },
+    {
+        "question": "Per quanto tempo sono disponibili le parti di ricambio?",
+        "ground_truth": "Le parti di ricambio sono disponibili per una durata minima di 10 anni secondo il Regolamento 2019/2023.",
+        "source": "manuale.pdf"
+    },
+    {
+        "question": "Cosa fare prima di iniziare l'installazione?",
+        "ground_truth": "Prima di iniziare l'installazione, leggere attentamente le istruzioni per garantire sicurezza e correttezza.",
+        "source": "manuale.pdf"
+    },
+    {
+        "question": "È possibile riparare da soli il dispositivo?",
+        "ground_truth": "Non tentare di riparare il dispositivo da soli poiché si potrebbe danneggiare ulteriormente e annullare la garanzia.",
+        "source": "manuale.pdf"
+    },
+    {
+        "question": "Qual è il codice modello riportato sulla copertina?",
+        "ground_truth": "Il codice modello riportato è F2DV5S8H0E.",
+        "source": "manuale.pdf"
+    },
+    
+    # --- DOMANDE SULLE FAQ AZIENDALI (CSV) ---
+    {
+        "question": "Come si resetta la password aziendale?",
+        "ground_truth": "Bisogna visitare il portale https://id.techcorp.com, cliccare su 'Password Dimenticata' e inserire il codice ricevuto via SMS.",
+        "source": "faq.csv"
+    },
+    {
+        "question": "Quanti giorni di smart working sono permessi?",
+        "ground_truth": "I dipendenti possono lavorare da remoto fino a 2 giorni a settimana previa approvazione del manager.",
+        "source": "faq.csv"
+    },
+    {
+        "question": "Quali sono gli orari della mensa?",
+        "ground_truth": "La mensa è aperta dalle 12:00 alle 14:30 dal lunedì al venerdì.",
+        "source": "faq.csv"
+    },
+    {
+        "question": "Cosa fare se perdo il badge?",
+        "ground_truth": "Denunciare immediatamente lo smarrimento alla sicurezza (sicurezza@techcorp.com). Il costo del duplicato è 10 euro.",
+        "source": "faq.csv"
+    },
+    {
+        "question": "Qual è la password del Wi-Fi ospiti?",
+        "ground_truth": "La rete è 'TechCorp_Guest' e la password cambia ogni lunedì; è visibile sui monitor alla reception.",
+        "source": "faq.csv"
+    },
+    {
+        "question": "Qual è il massimale per il pranzo in trasferta?",
+        "ground_truth": "Il massimale è di 25 euro a persona.",
+        "source": "faq.csv"
+    },
+    {
+        "question": "Posso usare il mio computer personale per lavoro?",
+        "ground_truth": "No, è vietato connettere dispositivi personali alla rete interna per motivi di sicurezza.",
+        "source": "faq.csv"
+    },
+
+    # --- DOMANDE SULL'ARTICOLO WEB (TXT) ---
+    {
+        "question": "Quale standard sta unificando il mercato della Smart Home?",
+        "ground_truth": "Lo standard Matter sta unificando il mercato, permettendo a dispositivi Apple, Google e Amazon di comunicare.",
+        "source": "articolo_web.txt"
+    },
+    {
+        "question": "Quanto si può risparmiare con i termostati intelligenti?",
+        "ground_truth": "I termostati intelligenti possono ridurre la bolletta del 20% circa imparando le abitudini dell'utente.",
+        "source": "articolo_web.txt"
+    },
+    {
+        "question": "Quali dubbi solleva la Smart Home secondo l'articolo?",
+        "ground_truth": "Solleva dubbi sulla privacy, specialmente riguardo alla gestione dei dati raccolti da microfoni e telecamere.",
+        "source": "articolo_web.txt"
+    },
+    {
+        "question": "Cosa usano le nuove telecamere di sicurezza?",
+        "ground_truth": "Usano l'intelligenza artificiale (IA) per distinguere tra corrieri, cani o intrusi.",
+        "source": "articolo_web.txt"
+    },
+    {
+        "question": "Chi è l'autore dell'articolo sulla Smart Home?",
+        "ground_truth": "L'articolo è scritto da Marco Tech.",
+        "source": "articolo_web.txt"
+    },
+    {
+        "question": "Qual è una raccomandazione di sicurezza per i dispositivi smart?",
+        "ground_truth": "È fondamentale scegliere brand affidabili e cambiare le password di default dei dispositivi.",
+        "source": "articolo_web.txt"
+    }
+]
+
+# Salvataggio in file JSON nella cartella data
+output_path = "data/golden_dataset.json"
+with open(output_path, "w", encoding="utf-8") as f:
+    json.dump(golden_data, f, indent=4, ensure_ascii=False)
+
+print(f"Golden Dataset creato con successo: {output_path}")
+print(f"Numero totale di coppie Domanda/Risposta: {len(golden_data)}")
