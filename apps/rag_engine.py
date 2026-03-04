@@ -1,7 +1,8 @@
 import time
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from langchain_community.vectorstores import FAISS, Qdrant
+from langchain_community.vectorstores import FAISS
+from langchain_qdrant import QdrantVectorStore
 from langchain_core.documents import Document
 from sentence_transformers import CrossEncoder
 import shutil
@@ -61,7 +62,7 @@ class RAGModularPipeline:
             
         elif self.db_type == 'qdrant':
             # Qdrant versione in-memory per test
-            self.vector_db = Qdrant.from_documents(
+            self.vector_db = QdrantVectorStore.from_documents(
                 documents,
                 self.embeddings,
                 location=":memory:",  # Solo in RAM per questo test
