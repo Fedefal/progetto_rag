@@ -7,6 +7,7 @@ from langchain_core.documents import Document
 from sentence_transformers import CrossEncoder
 import shutil
 import os
+from langchain_ollama import OllamaLLM
 
 # Definiamo una classe che gestisce TUTTO il processo RAG
 class RAGModularPipeline:
@@ -21,7 +22,7 @@ class RAGModularPipeline:
         self.embedding_model_name = embedding_model_name
         self.vector_db = None
         
-        print(f"🔧 Inizializzazione RAG: DB={db_type}, Embedder={embedding_model_name}")
+        print(f" Inizializzazione RAG: DB={db_type}, Embedder={embedding_model_name}")
         
         # 1. Carichiamo l'Embedder (Il Traduttore)
         # Usiamo la CPU per compatibilità, se hai GPU cambierà da solo
@@ -38,7 +39,7 @@ class RAGModularPipeline:
         Prende i documenti (chunks), calcola i vettori e li salva nel DB scelto.
         """
         start_time = time.time()
-        print(f"⏳ Indicizzazione di {len(documents)} chunks in corso...")
+        print(f" Indicizzazione di {len(documents)} chunks in corso...")
 
         if self.db_type == 'chroma':
             # Chroma salva su disco in una cartella
@@ -71,7 +72,7 @@ class RAGModularPipeline:
             
         end_time = time.time()
         indexing_time = end_time - start_time
-        print(f"✅ Indicizzazione completata in {indexing_time:.2f} secondi.")
+        print(f" Indicizzazione completata in {indexing_time:.2f} secondi.")
         return indexing_time
 
     def retrieve(self, query, k=5):
@@ -107,3 +108,26 @@ class RAGModularPipeline:
         reranked_docs = [doc for doc, score in sorted_docs_with_scores[:k]]
         
         return reranked_docs
+    
+    def generate_answer(self, query, retrieved_docs):
+        # 1. Inizializziamo Mistral tramite Ollama
+        llm = OllamaLLM(model="mistral")
+        
+        # 2. Uniamo i testi dei documenti trovati in un unico grande "contesto"
+        context = "\n\n".join([doc.page_content for doc in retrieved_docs])
+        
+        # 3. Scriviamo le istruzioni ferree (Il Prompt)
+        prompt = f"""Sei un assistente virtuale aziendale gentile e professionale.
+Usa SOLO ed ESCLUSIVAMENTE le informazioni contenute nel seguente Contesto per rispondere alla Domanda dell'utente. 
+Se la risposta non è nel Contesto, dì semplicemente "Non ho questa informazione nel mio database", non inventare nulla.
+Rispondi sempre in italiano.
+
+Contesto:
+{context}
+
+Domanda: {query}
+
+Risposta:"""
+
+        # 4. Chiediamo a Mistral di generare la risposta
+        return llm.invoke(prompt)

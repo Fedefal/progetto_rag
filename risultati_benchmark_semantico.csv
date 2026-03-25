@@ -1,0 +1,7 @@
+Configurazione,Database,Reranker,Tempo Indicizzazione (sec),Tempo Risposta Medio (sec),Accuratezza (%)
+FAISS_Base,faiss,No,3.26,0.009,100.0
+Chroma_Base,chroma,No,4.57,0.012,100.0
+Qdrant_Base,qdrant,No,4.07,0.01,100.0
+FAISS_con_Reranker,faiss,Sì,3.03,0.477,100.0
+FAISS_Multilingual,faiss,No,3.55,0.015,95.0
+FAISS_BGE_M3,faiss,No,85.72,0.195,100.0
